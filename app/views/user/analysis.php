@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="col text-center">
                                     <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$i]->document_path, 20) ?>" allowfullscreen></iframe>
+                                        <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$i]->document_path, 14) ?>" allowfullscreen></iframe>
                                     </div>
                                 </div>
 
