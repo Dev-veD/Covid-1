@@ -2,7 +2,7 @@
 
 
 
-<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+<div class="emod modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -134,7 +134,7 @@ $('#hQR').html(obj.quarantined_home);
 $('#tQR').html(tQ);
 $('#gQR').html(obj.quarantined_government);
      // Display Modal
-     $('.modal').modal('show'); 
+     $('.emod').modal('show'); 
      var ctx = document.getElementById("myActiveChart"); 
 var myChart = new Chart(ctx, { 
   type: 'doughnut', 
