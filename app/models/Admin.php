@@ -189,21 +189,21 @@ class Admin
   }
 
 
-  public function checkAdmin($data)
+ public function checkAdmin($data)
   {
-    $this->db->query('SELECT * FROM users WHERE type=:type AND email=:email AND otp=:password');
-    $this->db->bindvalues(':type', 'admin');
+    $this->db->query('SELECT * FROM users WHERE email=:email AND otp=:password');
     $this->db->bindvalues(':email', $data['email']);
     $this->db->bindvalues(':password', $data['password']);
     $row = $this->db->single();
-
+    
     if ($this->db->rowCount() > 0) {
       if (session_status() == PHP_SESSION_NONE) {
         session_start();
       }
+      
       $_SESSION['user_admin'] = $row->email;
-      $_SESSION['user_type'] = 'admin';
-      $_SESSION['user_id'] = 'Admin';
+      $_SESSION['user_type'] = $row->type;
+      $_SESSION['user_id'] = $row->type;
       $_SESSION['admin_id'] = $row->id;
 
       return true;
