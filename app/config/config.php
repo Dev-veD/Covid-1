@@ -3,15 +3,15 @@
 //Database Parameters
 
 define('DB_HOST','localhost');
-define('DB_USER','uttarakhand');
-define('DB_PASS','Covid19@uk');
-define('DB_NAME','covid19');
+define('DB_USER','root');
+define('DB_PASS','Divya');
+define('DB_NAME','covid');
 
 //approot
 define('APPROOT',dirname(dirname(__FILE__)));
 
 //URLROOT
-define('URLROOT','http://localhost/Covid/');
+define('URLROOT','');
 define('DS', DIRECTORY_SEPARATOR);
 
 //sitename
