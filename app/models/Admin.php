@@ -6,9 +6,6 @@ class Admin
   {
     $this->db = new Database();
   }
-  public function getdata()
-  {
-  }
   public function updatePatientData()
   {
 
@@ -123,27 +120,90 @@ class Admin
     $this->db->bindvalues(':id', $id);
     $this->db->execute();
   }
-  public function getGatheringData()
+
+  //this function now will used to update hotspot data 
+  public function getHotspotData()
   {
-    $this->db->query('SELECT * FROM mass_gatherings');
+    $this->db->query('SELECT * FROM hotspot');
     return $this->db->resultSet();
   }
+  public function addNewHotspot($hotspotdata)
+  {
+     $this->db->query("INSERT INTO hotspot(city,district,latitude,longitude,active,recovered,deceased,homequarantine,facilityquarantine)
+     values(:city,:district,:latitude,:longitude,:active,:recovered,:deceased,:homequarantine,:facilityquarantine)");
+     $this->db->bindvalues(':city',$hotspotdata['city']);
+     $this->db->bindvalues(':district',$hotspotdata['district']);
+     $this->db->bindvalues(':latitude',$hotspotdata['latitude']);
+     $this->db->bindvalues(':longitude',$hotspotdata['longitude']);
+     $this->db->bindvalues(':active',$hotspotdata['active']);
+     $this->db->bindvalues(':recovered',$hotspotdata['recovered']);
+     $this->db->bindvalues(':deceased',$hotspotdata['deceased']);
+     $this->db->bindvalues(':homequarantine',$hotspotdata['homequarantine']);
+     $this->db->bindvalues(':facilityquarantine',$hotspotdata['facilityquarantine']);
+     if($this->db->execute())
+     {
+        return true;
+     }
+     else
+     {
+        return false;
+     }
+  }
+
+
+  public function deleteHotspot($id)
+  {
+    $this->db->query('DELETE FROM hotspot WHERE id=:id');
+    $this->db->bindvalues(':id',$id);
+    if($this->db->execute())
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+ 
+  public function editHotspot($editdata)
+  {
+    $this->db->query('UPDATE hotspot SET city=:city,district=:district,latitude=:latitude,longitude=:longitude,active=:active,recovered=:recovered,
+    deceased=:deceased,homequarantine=:homequarantine,facilityquarantine=:facilityquarantine WHERE id=:id');
+    $this->db->bindvalues(':city',$editdata['city']);
+    $this->db->bindvalues(':district',$editdata['district']);
+    $this->db->bindvalues(':latitude',$editdata['latitude']);
+    $this->db->bindvalues(':longitude',$editdata['longitude']);
+    $this->db->bindvalues(':active',$editdata['active']);
+    $this->db->bindvalues(':recovered',$editdata['recovered']);
+    $this->db->bindvalues(':deceased',$editdata['deceased']);
+    $this->db->bindvalues(':homequarantine',$editdata['homequarantine']);
+    $this->db->bindvalues(':facilityquarantine',$editdata['facilityquarantine']);
+    $this->db->bindvalues(':id',$editdata['id']);
+    if($this->db->execute())
+    {
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
 
   public function checkAdmin($data)
   {
-    $this->db->query('SELECT * FROM users WHERE email=:email AND otp=:password');
+    $this->db->query('SELECT * FROM users WHERE type=:type AND email=:email AND otp=:password');
+    $this->db->bindvalues(':type', 'admin');
     $this->db->bindvalues(':email', $data['email']);
     $this->db->bindvalues(':password', $data['password']);
     $row = $this->db->single();
-    
+
     if ($this->db->rowCount() > 0) {
       if (session_status() == PHP_SESSION_NONE) {
         session_start();
       }
-      
       $_SESSION['user_admin'] = $row->email;
-      $_SESSION['user_type'] = $row->type;
-      $_SESSION['user_id'] = $row->type;
+      $_SESSION['user_type'] = 'admin';
+      $_SESSION['user_id'] = 'Admin';
       $_SESSION['admin_id'] = $row->id;
 
       return true;
@@ -151,6 +211,8 @@ class Admin
       return false;
     }
   }
+
+
   public function uploadNewNotice($data)
   {
 
@@ -467,6 +529,56 @@ class Admin
       }
   
   }
+
+
+  //QUARANTINE DATE
+
+   public function getQuarantineData()
+   {
+      $this->db->query('SELECT * FROM uDistrict');
+      return $this->db->resultSet();
+   }
+
+   public function updateQuarantine($data)
+   {
+     $this->db->query('SELECT * from uDistrict WHERE id=:id');
+     $this->db->bindvalues(':id',$data['id']);
+     $result=$this->db->single();
+
+     if($result->quarantined_home==$data['homequarantine']&&$result->quarantined_government==$data['facilityquarantine'])
+     {
+           //no need to change 
+           return true;
+     }
+     {   
+        $this->db->query('SELECT * from uDistrict WHERE id=14');
+        $totalresult=$this->db->single(); 
+        $totalhomequarantine=(int)$totalresult->quarantined_home-(int)$result->quarantined_home+(int)$data['homequarantine'];
+        $totalfacilityquarantine=(int)$totalresult->quarantined_government-(int)$result->quarantined_government+(int)$data['facilityquarantine'];
+        $this->db->query('UPDATE uDistrict SET quarantined_home=:qh,quarantined_government=:qf WHERE id=:id'); 
+        $this->db->bindvalues(':qh',$data['homequarantine']);
+        $this->db->bindvalues(':qf',$data['facilityquarantine']);
+        $this->db->bindvalues(':id',$data['id']);
+        $this->db->execute();
+
+        $this->db->query('UPDATE uDistrict SET quarantined_home=:qh,quarantined_government=:qf WHERE id=14'); 
+        $this->db->bindvalues(':qh',$totalhomequarantine);
+        $this->db->bindvalues(':qf',$totalfacilityquarantine);
+        if($this->db->execute())
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+     }
+   }
+
+
+
+
+
   public function saveJson()
   {
     // die(dirname(dirname(dirname(__FILE__))));
@@ -481,6 +593,10 @@ class Admin
     $file_name=dirname(dirname(dirname(__FILE__))).'/public/districtdata.json';
     $res=json_encode($this->db->resultSet());
     file_put_contents($file_name,$res);
-    
+    //die($res);
+    $this->db->query('SELECT * FROM hotspot');
+    $file_name=dirname(dirname(dirname(__FILE__))).'/public/hotspotdata.json';
+    $res=json_encode($this->db->resultSet());
+    file_put_contents($file_name,$res);
   } 
 }
