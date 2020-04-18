@@ -34,7 +34,7 @@ class Analysis extends Controller
             if ($name_of_uploaded_file != '') {
                 $errors .= Helpers::documentValidation($size_of_uploaded_file, $max_allowed_file_size, $allowed_extensions, $type_of_uploaded_file);
             }
-            $upload_folder = "/var/www/html/Covid/public/AnalysisDocument/";
+            $upload_folder = "/var/www/html/public/AnalysisDocument/";
             $path_of_uploaded_file = $upload_folder . $name_of_uploaded_file;
             $tmp_path = $_FILES["uploaded_file"]["tmp_name"];
             
