@@ -3,7 +3,7 @@
      
         public function __construct()
         {
-            if (!adminLoggedIn()) {
+            if (!adminLoggedIn('admin')) {
             $url = URLROOT . 'Admine';
             header('location:' . $url);
         }
