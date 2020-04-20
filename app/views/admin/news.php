@@ -15,7 +15,7 @@
                                 <li class="list-inline-item seprate">
                                     <span>/</span>
                                 </li>
-                                <li class="list-inline-item">News & Media </li>
+                                <li class="list-inline-item">Publicity </li>
                             </ul>
                         </div>
 
@@ -36,22 +36,23 @@
                         <!-- ADD NOTICE -->
                         <div class="addNotice mb-3">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
-                                Upload News Update
+                                Upload New Publicity
                             </button>
                         </div>
                         <!-- NOTICE BLOCK -->
                         <div class="noticebox">
-                            <table class="table table-top-campaign text-center">
+                            <table id="tableid" class="table table-top-campaign text-center">
                                 <thead>
                                     <tr>
                                         <th>Sno.</th>
+                                        <th>Category</th>
                                         <th>Title </th>
                                         <th>Published Date</th>
-                                        <th>Portal</th>
-                                        <th>Edition</th>
-                                        <th>Page No.</th>
-                                        <th>Web Link</th>
-                                        <th>Action</th>
+                                        <th>Description</th>
+                                        <th>File</th>
+                                        <th>Remove</th>
+                                        <th>Edit</th>
+                                        <th style="visibility:hidden;"></th>
                                     </tr>
                                 </thead>
 
@@ -63,15 +64,14 @@
                                         echo ' 
                             <tr>
                                 <td>' . ++$cnt . '</td>
+                                <td >' . $entity->category . '</td>
                                 <td >' . $entity->title . '</td>
                                 <td >' . $entity->date . '</td>
-                                <td >' . $entity->portal . '</td>
-                                <td >' . $entity->edition . '</td>
-                                <td >' . $entity->page . '</td>
-                                <td ><a href="' . $entity->weblink . '"><i class="lar la-file-alt"></i></a></td>
-                              
+                                <td >' . $entity->description . '</td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path,34) . '</p></a></td>
                                 <td id="' . $entity->id . '"class="remove text-center"><a href="#">Remove</a></td>
-                               
+                                <td><button type="button" class="btn btn-success editbtn"><i class="fa fa-edit"></i></button></td>
+                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
                             </tr>';
                                     } ?>
 
@@ -90,7 +90,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="largeModalLabel">News & Media Details</h5>
+                            <h5 class="modal-title" id="largeModalLabel">Publicity</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -100,7 +100,18 @@
                                 <div class="card-header">Upload</div>
                                 <div class="card-body card-block">
                                     <form action="news/" method="post" enctype="multipart/form-data">
-
+                                        <div class="row form-group">
+                                            <div class="col-12">
+                                                <label style="color:black" for="newsCategory">Category</label>
+                                                <select class="form-control" id="newsCategory" name="category">
+                                                <option value="Press release">Press release</option>
+                                                    <option value="Covid-19 advisory">Covid-19 advisory</option>
+                                                    <option value="Visuals">Visuals</option>
+                                                    <option value="Covid-19 Awarness">Covid-19 Awarness</option>
+                                                    <option value="Bulletins">Bulletins</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="row form-group">
                                             <div class="col-8">
 
@@ -113,19 +124,20 @@
 
                                             </div>
                                         </div>
-                                        <div class="row form-group">
+                                        <!--   <div class="row form-group">
                                             <div class="col-8">
 
                                                 <label style="color:black" for="newsportal">Portal</label>
                                                 <input type="text" id="newsportal" name="portal" class="form-control" placeholder="Published In" required>
                                             </div>
-                                            <div class="col-4">
-                                                
-                                            <label style="color:black" for="newsedition">Edition</label>
+                                           <div class="col-4">
+
+                                                <label style="color:black" for="newsedition">Edition</label>
                                                 <input type="text" id="newsedition" name="edition" class="form-control" placeholder="Edition" required>
 
                                             </div>
-                                        </div>
+                                -->
+                                        <!--     </div>
                                         <div class="row form-group">
                                             <div class="col-8">
 
@@ -133,14 +145,41 @@
                                                 <input type="text" id="newslink" name="weblink" class="form-control" placeholder="News web link" required>
                                             </div>
                                             <div class="col-4">
-                                                
-                                            <label style="color:black" for="newspage">Page Number</label>
+
+                                                <label style="color:black" for="newspage">Page Number</label>
                                                 <input type="text" id="newspage" name="page" class="form-control" placeholder="Page Number" required>
 
                                             </div>
                                         </div>
+                                -->
 
-                                        
+                                        <div class="row form-group">
+                                            <div class="col-12">
+                                                <label style="color:black" for="newsdescription">Description</label>
+                                                <input type="text" id="newsdescription" name="description" class="form-control" placeholder="Description" required>
+
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-12 input-group">
+                                                Select associated document to upload :
+                                                <input type="file" name="uploaded_file" id="uploaded_file" required><br><br>
+                                            </div>
+                                        </div>
+                                  <!--      <div class="row form group">
+                                            <div class="col-5"><hr></div>
+                                            <div class="col-2">or</div>
+                                            <div class="col-5"><hr></div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col">
+
+                                                <label style="color:black" for="newslink">Web Link</label>
+                                                <input type="text" id="newslink" name="weblink" class="form-control" placeholder="News web link">
+                                            </div>
+                                        </div>
+                                -->
+
                                         <div class="form-actions form-group text-center">
                                             <button type="submit" class="btn btn-primary">Upload</button>
                                         </div>
@@ -159,6 +198,81 @@
                 </div>
             </div>
 
+
+            <div class="modal fade" id="editnews" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="largeModalLabelid">News & Media Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card">
+                                <div class="card-header">Edit</div>
+                                <div class="card-body card-block">
+                                    <form action="news/edit" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" id="editid" class="form-control" name="id">
+                                        <div class="row form-group">
+                                            <div class="col-12">
+                                                <label style="color:black" for="newsCategory">Category</label>
+                                                <select class="form-control" id="editnewsCategory" name="category">
+                                                    <option value="Press release">Press release</option>
+                                                    <option value="Covid-19 advisory">Covid-19 advisory</option>
+                                                    <option value="Visuals">Visuals</option>
+                                                    <option value="Covid-19 Awarness">Covid-19 Awarness</option>
+                                                    <option value="Bulletins">Bulletins</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col-8">
+
+                                                <label style="color:black" for="newstitle">Title</label>
+                                                <input type="text" id="editnewstitle" name="title" class="form-control" placeholder="News title" required>
+                                            </div>
+                                            <div class="col-4">
+                                                <label style="color:black" for="newsdate">Date</label>
+                                                <input type="date" id="editnewsdate" name="date" class="form-control" min="2020-01-01" required>
+
+                                            </div>
+                                        </div>
+                  
+                                        <div class="row form-group">
+                                            <div class="col-12">
+                                                <label style="color:black" for="editnewsdescription">Description</label>
+                                                <input type="text" id="editnewsdescription" name="description" class="form-control" placeholder="Description" required>
+
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-12 input-group">
+                                                Current File Uploaded: <p id="editfilename" style="color:black"></p>
+                                                <input type="file" name="uploaded_file" id="edituploaded_file"><br><br>
+                                            </div>
+                                        </div>
+                  
+
+
+                                        <div class="form-actions form-group text-center">
+                                            <button type="submit" class="btn btn-primary">Edit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        </d iv>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
@@ -174,19 +288,40 @@
                     $('.remove').click(function() {
 
                         var userid = $(this).attr('id');
-                        
+
                         $.ajax({
                             url: 'News/remove',
                             type: 'post',
                             data: {
                                 userid: userid
                             },
-                           
+
                             success: function(response) {
                                 console.log(response);
                                 window.location = "news";
                             }
                         });
+                    });
+                });
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#tableid').on('click', '.editbtn', function() {
+                        $('#editnews').modal('show');
+                        $tr = $(this).closest('tr');
+                        var data = $tr.children("td").map(function() {
+                            return $(this).text();
+                        }).get();
+
+                        console.log(data);
+                        $('#editid').val(data[8]);
+                        $('#editnewstitle').val(data[2]);
+                        $('#editnewsdate').val(data[3]);
+                        $('#editnewsdescription').val(data[4]);
+                        $('#editnewscategory').val(data[1]);
+                        document.getElementById('editfilename').innerHTML=data[5];
+                        
+
                     });
                 });
             </script>
