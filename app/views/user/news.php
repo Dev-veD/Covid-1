@@ -74,7 +74,6 @@
                                 <th>File</th>
                                 <th>Open</th>
                                 <th>Download</th>
-                                <th style="visibility:hidden;"></th>
                             </tr>
                         </thead>
 
@@ -89,11 +88,10 @@
                                 <td >' . $entity->date . '</td>
                                 <td >' . $entity->title . '</td>
                                 <td >' . $entity->description . '</td>
-                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i></a></td>
                                 <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '">Open</a></td>
                                 <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '" download>Download</a></td>
 
-                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
                             </tr>';
                             } ?>
 
@@ -120,7 +118,6 @@
                                 <th>File</th>
                                 <th>Open</th>
                                 <th>Download</th>
-                                <th style="visibility:hidden;"></th>
                             </tr>
                         </thead>
 
@@ -136,10 +133,9 @@
                                 <td >' . $entity->date . '</td>
                                 <td >' . $entity->title . '</td>
                                 <td >' . $entity->description . '</td>
-                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i></a></td>
                                 <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '">Open</a></td>
                                 <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '" download>Download</a></td>
-                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
                             </tr>';
                             } ?>
 
@@ -166,7 +162,6 @@
                                 <th>File</th>
                                 <th>Open</th>
                                 <th>Download</th>
-                                <th style="visibility:hidden;"></th>
                             </tr>
                         </thead>
 
@@ -182,10 +177,10 @@
                                 <td >' . $entity->date . '</td>
                                 <td >' . $entity->title . '</td>
                                 <td >' . $entity->description . '</td>
-                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i></a></td>
+
                                 <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '">Open</a></td>
                                 <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '" download>Download</a></td>
-                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
                             </tr>';
                             } ?>
 
@@ -212,7 +207,6 @@
                                 <th>File</th>
                                 <th>Open</th>
                                 <th>Download</th>
-                                <th style="visibility:hidden;"></th>
                             </tr>
                         </thead>
 
@@ -228,10 +222,10 @@
                                 <td >' . $entity->date . '</td>
                                 <td >' . $entity->title . '</td>
                                 <td >' . $entity->description . '</td>
-                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i></a></td>
+
                                 <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '">Open</a></td>
                                 <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '" download>Download</a></td>
-                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
                             </tr>';
                             } ?>
 
@@ -258,7 +252,6 @@
                                 <th>File</th>
                                 <th>Open</th>
                                 <th>Download</th>
-                                <th style="visibility:hidden;"></th>
                             </tr>
                         </thead>
 
@@ -274,10 +267,10 @@
                                 <td >' . $entity->date . '</td>
                                 <td >' . $entity->title . '</td>
                                 <td >' . $entity->description . '</td>
-                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i></a></td>
+
                                 <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '">Open</a></td>
                                 <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '" download>Download</a></td>
-                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
                             </tr>';
                             } ?>
 
