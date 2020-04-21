@@ -21,7 +21,7 @@
 
     /* Set default styles for tab content */
     .tabcontent {
-        color: white;
+        color: black;
         display: none;
         border: none;
         text-align: center;
@@ -58,381 +58,236 @@
             <button class="tablink col" onclick="openCity('Bulletins', this, 'blue')">Bulletins</button>
         </div>
         <div id="London" class="tabcontent">
+                        <!-- DATA TABLE-->
+                        <div class="table-responsive m-b-0">
+                            <!-- ADD NOTICE -->
 
-            <?php $temp = $data;
-            $data = array_reverse($data['press']);
-            $length = count($data);
-            $cnt = 0;
-            for ($i = 0; $i < (int) ($length / 2); $i++) {
-            ?>
-                <div class="card-deck">
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
+                            <!-- NOTICE BLOCK -->
+                            <div class="noticebox">
+                                <table id="tableid" class="table table-top-campaign text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Sno.</th>
+                                            <th>Published Date</th>
+                                            <th>Title </th>
+                                            <th>Description</th>
+                                            <th>File</th>
+                                            <th>Open</th>
+                                            <th>Download</th>
+                                            <th style="visibility:hidden;"></th>
+                                        </tr>
+                                    </thead>
 
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$cnt]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
+                                    <tbody>
 
-                                <h4 class="card-title"><?= $data[$cnt]->title ?></h4>
-                                <h5 class="card-title"> <?= $data[$cnt]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$cnt]->date ?></p>
+                                        <?php
+                                        $temp=array_reverse($data['press']);  
+                                        foreach ($temp as $entity) {
+                                            echo ' 
+                            <tr>
+                                <td>' . ++$cnt . '</td>
+                                <td >' . $entity->date . '</td>
+                                <td >' . $entity->title . '</td>
+                                <td >' . $entity->description . '</td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'">Open</a></td>
+                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'" download>Download</a></td>
 
+                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
+                            </tr>';
+                                        } ?>
+
+
+                                    </tbody>
+                                </table>
                             </div>
+                            <!-- END DATA TABLE     -->
                         </div>
                     </div>
-                    <?php $cnt = $cnt + 1 ?>
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
+                    <div id="Paris" class="tabcontent">
+                        <div class="table-responsive m-b-0">
+                            <!-- ADD NOTICE -->
 
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$cnt]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
+                            <!-- NOTICE BLOCK -->
+                            <div class="noticebox">
+                                <table id="tableid" class="table table-top-campaign text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Sno.</th>
+                                            <th>Published Date</th>
+                                            <th>Title </th>
+                                            <th>Description</th>
+                                            <th>File</th>
+                                            <th>Open</th>
+                                            <th>Download</th>
+                                            <th style="visibility:hidden;"></th>
+                                        </tr>
+                                    </thead>
 
-                                <h4 class="card-title"><?= $data[$cnt]->title ?></h4>
-                                <h5 class="card-title"> <?= $data[$cnt]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$cnt]->date ?></p>
+                                    <tbody>
+
+                                        <?php
+                                        $cnt=0;
+                                        $temp=array_reverse($data['awarness']);  
+                                        foreach ($temp as $entity) {
+                                            echo ' 
+                            <tr>
+                                <td>' . ++$cnt . '</td>
+                                <td >' . $entity->date . '</td>
+                                <td >' . $entity->title . '</td>
+                                <td >' . $entity->description . '</td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'">Open</a></td>
+                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'" download>Download</a></td>
+                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
+                            </tr>';
+                                        } ?>
+
+
+                                    </tbody>
+                                </table>
                             </div>
+                            <!-- END DATA TABLE     -->
                         </div>
                     </div>
-                    <?php $cnt = $cnt + 1 ?>
-                </div>
-            <?php } ?>
-            <?php
+                    <div id="Tokyo" class="tabcontent">
+                        <div class="table-responsive m-b-0">
+                            <!-- ADD NOTICE -->
 
-            for ($x = 0; $x < $length % 2; $x++) {
-            ?>
-                <div class="card-deck">
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
+                            <!-- NOTICE BLOCK -->
+                            <div class="noticebox">
+                                <table id="tableid" class="table table-top-campaign text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Sno.</th>
+                                            <th>Published Date</th>
+                                            <th>Title </th>
+                                            <th>Description</th>
+                                            <th>File</th>
+                                            <th>Open</th>
+                                            <th>Download</th>
+                                            <th style="visibility:hidden;"></th>
+                                        </tr>
+                                    </thead>
 
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
+                                    <tbody>
 
-                                <h4 class="card-title"><?= $data[$length - 1]->title ?></h4>
-                                <h5 class="card-title"><?= $data[$length - 1]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$length - 1]->date_get_last_errors ?></p>
+                                        <?php
+                                        $cnt = 0;
+                                        $temp=array_reverse($data['advisory']);  
+                                        foreach ($temp as $entity) {
+                                            echo ' 
+                            <tr>
+                                <td>' . ++$cnt . '</td>
+                                <td >' . $entity->date . '</td>
+                                <td >' . $entity->title . '</td>
+                                <td >' . $entity->description . '</td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'">Open</a></td>
+                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'" download>Download</a></td>
+                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
+                            </tr>';
+                                        } ?>
+
+
+                                    </tbody>
+                                </table>
                             </div>
+                            <!-- END DATA TABLE     -->
                         </div>
                     </div>
-                </div>
-            <?php } ?>
-        </div>
+                    <div id="Oslo" class="tabcontent">
+                        <div class="table-responsive m-b-0">
+                            <!-- ADD NOTICE -->
 
-        <div id="Paris" class="tabcontent">
-            <?php $data = array_reverse($temp['awarness']);
-            $length = count($data);
-            $cnt = 0;
-            for ($i = 0; $i < (int) ($length / 2); $i++) {
-            ?>
-                <div class="card-deck">
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
+                            <!-- NOTICE BLOCK -->
+                            <div class="noticebox">
+                                <table id="tableid" class="table table-top-campaign text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Sno.</th>
+                                            <th>Published Date</th>
+                                            <th>Title </th>
+                                            <th>Description</th>
+                                            <th>File</th>
+                                            <th>Open</th>
+                                            <th>Download</th>
+                                            <th style="visibility:hidden;"></th>
+                                        </tr>
+                                    </thead>
 
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$cnt]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
+                                    <tbody>
 
-                                <h4 class="card-title"><?= $data[$cnt]->title ?></h4>
-                                <h5 class="card-title"> <?= $data[$cnt]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$cnt]->date ?></p>
+                                        <?php
+                                        $cnt = 0;
+                                        $temp=array_reverse($data['visuals']);  
+                                        foreach ($temp as $entity) {
+                                            echo ' 
+                            <tr>
+                                <td>' . ++$cnt . '</td>
+                                <td >' . $entity->date . '</td>
+                                <td >' . $entity->title . '</td>
+                                <td >' . $entity->description . '</td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'">Open</a></td>
+                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'" download>Download</a></td>
+                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
+                            </tr>';
+                                        } ?>
 
+
+                                    </tbody>
+                                </table>
                             </div>
+                            <!-- END DATA TABLE     -->
                         </div>
                     </div>
-                    <?php $cnt = $cnt + 1 ?>
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
+                    <div id="Bulletins" class="tabcontent">
+                        <div class="table-responsive m-b-0">
+                            <!-- ADD NOTICE -->
 
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$cnt]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
+                            <!-- NOTICE BLOCK -->
+                            <div class="noticebox">
+                                <table id="tableid" class="table table-top-campaign text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Sno.</th>
+                                            <th>Published Date</th>
+                                            <th>Title </th>
+                                            <th>Description</th>
+                                            <th>File</th>
+                                            <th>Open</th>
+                                            <th>Download</th>
+                                            <th style="visibility:hidden;"></th>
+                                        </tr>
+                                    </thead>
 
-                                <h4 class="card-title"><?= $data[$cnt]->title ?></h4>
-                                <h5 class="card-title"> <?= $data[$cnt]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$cnt]->date ?></p>
+                                    <tbody>
+
+                                        <?php
+                                        $cnt = 0;
+                                        $temp=array_reverse($data['bulletin']);  
+                                        foreach ($temp as $entity) {
+                                            echo ' 
+                            <tr>
+                                <td>' . ++$cnt . '</td>
+                                <td >' . $entity->date . '</td>
+                                <td >' . $entity->title . '</td>
+                                <td >' . $entity->description . '</td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'">Open</a></td>
+                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'" download>Download</a></td>
+                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
+                            </tr>';
+                                        } ?>
+
+
+                                    </tbody>
+                                </table>
                             </div>
+                            <!-- END DATA TABLE     -->
                         </div>
                     </div>
-                    <?php $cnt = $cnt + 1 ?>
-                </div>
-            <?php } ?>
-            <?php
-
-            for ($x = 0; $x < $length % 2; $x++) {
-            ?>
-                <div class="card-deck">
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
-
-                                <h4 class="card-title"><?= $data[$length - 1]->title ?></h4>
-                                <h5 class="card-title"><?= $data[$length - 1]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$length - 1]->date_get_last_errors ?></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-
-        <div id="Tokyo" class="tabcontent">
-            <?php $data = array_reverse($temp['advisory']);
-            $length = count($data);
-            $cnt = 0;
-            for ($i = 0; $i < (int) ($length / 2); $i++) {
-            ?>
-                <div class="card-deck">
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$cnt]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
-
-                                <h4 class="card-title"><?= $data[$cnt]->title ?></h4>
-                                <h5 class="card-title"> <?= $data[$cnt]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$cnt]->date ?></p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <?php $cnt = $cnt + 1 ?>
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$cnt]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
-
-                                <h4 class="card-title"><?= $data[$cnt]->title ?></h4>
-                                <h5 class="card-title"> <?= $data[$cnt]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$cnt]->date ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <?php $cnt = $cnt + 1 ?>
-                </div>
-            <?php } ?>
-            <?php
-
-            for ($x = 0; $x < $length % 2; $x++) {
-            ?>
-                <div class="card-deck">
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
-
-                                <h4 class="card-title"><?= $data[$length - 1]->title ?></h4>
-                                <h5 class="card-title"><?= $data[$length - 1]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$length - 1]->date_get_last_errors ?></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-
-        <div id="Oslo" class="tabcontent">
-            <?php $data = array_reverse($temp['visuals']);
-            $length = count($data);
-            $cnt = 0;
-            for ($i = 0; $i < (int) ($length / 2); $i++) {
-            ?>
-               <div class="card-deck">
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$cnt]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
-
-                                <h4 class="card-title"><?= $data[$cnt]->title ?></h4>
-                                <h5 class="card-title"> <?= $data[$cnt]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$cnt]->date ?></p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <?php $cnt = $cnt + 1 ?>
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$cnt]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
-
-                                <h4 class="card-title"><?= $data[$cnt]->title ?></h4>
-                                <h5 class="card-title"> <?= $data[$cnt]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$cnt]->date ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <?php $cnt = $cnt + 1 ?>
-                </div>
-            <?php } ?>
-            <?php
-
-            for ($x = 0; $x < $length % 2; $x++) {
-            ?>
-                <div class="card-deck">
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
-                                <h4 class="card-title"><?= $data[$length - 1]->title ?></h4>
-                                <h5 class="card-title"><?= $data[$length - 1]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$length - 1]->date_get_last_errors ?></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-        <div id="Bulletins" class="tabcontent">
-            <?php $data = array_reverse($temp['bulletin']);
-            $length = count($data);
-            $cnt = 0;
-            for ($i = 0; $i < (int) ($length / 2); $i++) {
-            ?>
-                <div class="card-deck">
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$cnt]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
-                                
-                                <h4 class="card-title"><?= $data[$cnt]->title ?></h4>
-                                <h5 class="card-title"> <?= $data[$cnt]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$cnt]->date ?></p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <?php $cnt = $cnt + 1 ?>
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$cnt]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
-
-                                <h4 class="card-title"><?= $data[$cnt]->title ?></h4>
-                                <h5 class="card-title"> <?= $data[$cnt]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$cnt]->date ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <?php $cnt = $cnt + 1 ?>
-                </div>
-            <?php } ?>
-            <?php
-
-            for ($x = 0; $x < $length % 2; $x++) {
-            ?>
-                <div class="card-deck">
-                    <div class="col-lg-6 d-flex align-items-stretch">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-
-                                <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                    <iframe class="embed-responsive-item" src="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" allowfullscreen></iframe>
-                                </div>
-                                <div class="row mb-1">
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>">Open</a></div>
-                                    <div class="col"><a class="btn btn-primary" href="<?= URLROOT . substr($data[$length - 1]->document_path, 14) ?>" download>Download</a></div>
-                                </div>
-
-                                <h4 class="card-title"><?= $data[$length - 1]->title ?></h4>
-                                <h5 class="card-title"><?= $data[$length - 1]->description ?></h5>
-                                <p class="card-text">Published On: <?= $data[$length - 1]->date_get_last_errors ?></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-
     </div>
 </div>
 <script>
