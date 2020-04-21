@@ -58,236 +58,236 @@
             <button class="tablink col" onclick="openCity('Bulletins', this, 'blue')">Bulletins</button>
         </div>
         <div id="London" class="tabcontent">
-                        <!-- DATA TABLE-->
-                        <div class="table-responsive m-b-0">
-                            <!-- ADD NOTICE -->
+            <!-- DATA TABLE-->
+            <div class="table-responsive m-b-0">
+                <!-- ADD NOTICE -->
 
-                            <!-- NOTICE BLOCK -->
-                            <div class="noticebox">
-                                <table id="tableid" class="table table-top-campaign text-center">
-                                    <thead>
-                                        <tr>
-                                            <th>Sno.</th>
-                                            <th>Published Date</th>
-                                            <th>Title </th>
-                                            <th>Description</th>
-                                            <th>File</th>
-                                            <th>Open</th>
-                                            <th>Download</th>
-                                            <th style="visibility:hidden;"></th>
-                                        </tr>
-                                    </thead>
+                <!-- NOTICE BLOCK -->
+                <div class="noticebox">
+                    <table id="tableid" class="table table-top-campaign text-center">
+                        <thead>
+                            <tr>
+                                <th>Sno.</th>
+                                <th>Published Date</th>
+                                <th>Title </th>
+                                <th>Description</th>
+                                <th>File</th>
+                                <th>Open</th>
+                                <th>Download</th>
+                                <th style="visibility:hidden;"></th>
+                            </tr>
+                        </thead>
 
-                                    <tbody>
+                        <tbody>
 
-                                        <?php
-                                        $temp=array_reverse($data['press']);  
-                                        foreach ($temp as $entity) {
-                                            echo ' 
+                            <?php
+                            $temp = array_reverse($data['press']);
+                            foreach ($temp as $entity) {
+                                echo ' 
                             <tr>
                                 <td>' . ++$cnt . '</td>
                                 <td >' . $entity->date . '</td>
                                 <td >' . $entity->title . '</td>
                                 <td >' . $entity->description . '</td>
                                 <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
-                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'">Open</a></td>
-                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'" download>Download</a></td>
+                                <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '">Open</a></td>
+                                <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '" download>Download</a></td>
 
                                 <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
                             </tr>';
-                                        } ?>
+                            } ?>
 
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- END DATA TABLE     -->
-                        </div>
-                    </div>
-                    <div id="Paris" class="tabcontent">
-                        <div class="table-responsive m-b-0">
-                            <!-- ADD NOTICE -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END DATA TABLE     -->
+            </div>
+        </div>
+        <div id="Paris" class="tabcontent">
+            <div class="table-responsive m-b-0">
+                <!-- ADD NOTICE -->
 
-                            <!-- NOTICE BLOCK -->
-                            <div class="noticebox">
-                                <table id="tableid" class="table table-top-campaign text-center">
-                                    <thead>
-                                        <tr>
-                                            <th>Sno.</th>
-                                            <th>Published Date</th>
-                                            <th>Title </th>
-                                            <th>Description</th>
-                                            <th>File</th>
-                                            <th>Open</th>
-                                            <th>Download</th>
-                                            <th style="visibility:hidden;"></th>
-                                        </tr>
-                                    </thead>
+                <!-- NOTICE BLOCK -->
+                <div class="noticebox">
+                    <table id="tableid" class="table table-top-campaign text-center">
+                        <thead>
+                            <tr>
+                                <th>Sno.</th>
+                                <th>Published Date</th>
+                                <th>Title </th>
+                                <th>Description</th>
+                                <th>File</th>
+                                <th>Open</th>
+                                <th>Download</th>
+                                <th style="visibility:hidden;"></th>
+                            </tr>
+                        </thead>
 
-                                    <tbody>
+                        <tbody>
 
-                                        <?php
-                                        $cnt=0;
-                                        $temp=array_reverse($data['awarness']);  
-                                        foreach ($temp as $entity) {
-                                            echo ' 
+                            <?php
+                            $cnt = 0;
+                            $temp = array_reverse($data['awarness']);
+                            foreach ($temp as $entity) {
+                                echo ' 
                             <tr>
                                 <td>' . ++$cnt . '</td>
                                 <td >' . $entity->date . '</td>
                                 <td >' . $entity->title . '</td>
                                 <td >' . $entity->description . '</td>
                                 <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
-                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'">Open</a></td>
-                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'" download>Download</a></td>
+                                <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '">Open</a></td>
+                                <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '" download>Download</a></td>
                                 <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
                             </tr>';
-                                        } ?>
+                            } ?>
 
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- END DATA TABLE     -->
-                        </div>
-                    </div>
-                    <div id="Tokyo" class="tabcontent">
-                        <div class="table-responsive m-b-0">
-                            <!-- ADD NOTICE -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END DATA TABLE     -->
+            </div>
+        </div>
+        <div id="Tokyo" class="tabcontent">
+            <div class="table-responsive m-b-0">
+                <!-- ADD NOTICE -->
 
-                            <!-- NOTICE BLOCK -->
-                            <div class="noticebox">
-                                <table id="tableid" class="table table-top-campaign text-center">
-                                    <thead>
-                                        <tr>
-                                            <th>Sno.</th>
-                                            <th>Published Date</th>
-                                            <th>Title </th>
-                                            <th>Description</th>
-                                            <th>File</th>
-                                            <th>Open</th>
-                                            <th>Download</th>
-                                            <th style="visibility:hidden;"></th>
-                                        </tr>
-                                    </thead>
+                <!-- NOTICE BLOCK -->
+                <div class="noticebox">
+                    <table id="tableid" class="table table-top-campaign text-center">
+                        <thead>
+                            <tr>
+                                <th>Sno.</th>
+                                <th>Published Date</th>
+                                <th>Title </th>
+                                <th>Description</th>
+                                <th>File</th>
+                                <th>Open</th>
+                                <th>Download</th>
+                                <th style="visibility:hidden;"></th>
+                            </tr>
+                        </thead>
 
-                                    <tbody>
+                        <tbody>
 
-                                        <?php
-                                        $cnt = 0;
-                                        $temp=array_reverse($data['advisory']);  
-                                        foreach ($temp as $entity) {
-                                            echo ' 
+                            <?php
+                            $cnt = 0;
+                            $temp = array_reverse($data['advisory']);
+                            foreach ($temp as $entity) {
+                                echo ' 
                             <tr>
                                 <td>' . ++$cnt . '</td>
                                 <td >' . $entity->date . '</td>
                                 <td >' . $entity->title . '</td>
                                 <td >' . $entity->description . '</td>
                                 <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
-                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'">Open</a></td>
-                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'" download>Download</a></td>
+                                <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '">Open</a></td>
+                                <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '" download>Download</a></td>
                                 <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
                             </tr>';
-                                        } ?>
+                            } ?>
 
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- END DATA TABLE     -->
-                        </div>
-                    </div>
-                    <div id="Oslo" class="tabcontent">
-                        <div class="table-responsive m-b-0">
-                            <!-- ADD NOTICE -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END DATA TABLE     -->
+            </div>
+        </div>
+        <div id="Oslo" class="tabcontent">
+            <div class="table-responsive m-b-0">
+                <!-- ADD NOTICE -->
 
-                            <!-- NOTICE BLOCK -->
-                            <div class="noticebox">
-                                <table id="tableid" class="table table-top-campaign text-center">
-                                    <thead>
-                                        <tr>
-                                            <th>Sno.</th>
-                                            <th>Published Date</th>
-                                            <th>Title </th>
-                                            <th>Description</th>
-                                            <th>File</th>
-                                            <th>Open</th>
-                                            <th>Download</th>
-                                            <th style="visibility:hidden;"></th>
-                                        </tr>
-                                    </thead>
+                <!-- NOTICE BLOCK -->
+                <div class="noticebox">
+                    <table id="tableid" class="table table-top-campaign text-center">
+                        <thead>
+                            <tr>
+                                <th>Sno.</th>
+                                <th>Published Date</th>
+                                <th>Title </th>
+                                <th>Description</th>
+                                <th>File</th>
+                                <th>Open</th>
+                                <th>Download</th>
+                                <th style="visibility:hidden;"></th>
+                            </tr>
+                        </thead>
 
-                                    <tbody>
+                        <tbody>
 
-                                        <?php
-                                        $cnt = 0;
-                                        $temp=array_reverse($data['visuals']);  
-                                        foreach ($temp as $entity) {
-                                            echo ' 
+                            <?php
+                            $cnt = 0;
+                            $temp = array_reverse($data['visuals']);
+                            foreach ($temp as $entity) {
+                                echo ' 
                             <tr>
                                 <td>' . ++$cnt . '</td>
                                 <td >' . $entity->date . '</td>
                                 <td >' . $entity->title . '</td>
                                 <td >' . $entity->description . '</td>
                                 <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
-                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'">Open</a></td>
-                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'" download>Download</a></td>
+                                <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '">Open</a></td>
+                                <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '" download>Download</a></td>
                                 <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
                             </tr>';
-                                        } ?>
+                            } ?>
 
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- END DATA TABLE     -->
-                        </div>
-                    </div>
-                    <div id="Bulletins" class="tabcontent">
-                        <div class="table-responsive m-b-0">
-                            <!-- ADD NOTICE -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END DATA TABLE     -->
+            </div>
+        </div>
+        <div id="Bulletins" class="tabcontent">
+            <div class="table-responsive m-b-0">
+                <!-- ADD NOTICE -->
 
-                            <!-- NOTICE BLOCK -->
-                            <div class="noticebox">
-                                <table id="tableid" class="table table-top-campaign text-center">
-                                    <thead>
-                                        <tr>
-                                            <th>Sno.</th>
-                                            <th>Published Date</th>
-                                            <th>Title </th>
-                                            <th>Description</th>
-                                            <th>File</th>
-                                            <th>Open</th>
-                                            <th>Download</th>
-                                            <th style="visibility:hidden;"></th>
-                                        </tr>
-                                    </thead>
+                <!-- NOTICE BLOCK -->
+                <div class="noticebox">
+                    <table id="tableid" class="table table-top-campaign text-center">
+                        <thead>
+                            <tr>
+                                <th>Sno.</th>
+                                <th>Published Date</th>
+                                <th>Title </th>
+                                <th>Description</th>
+                                <th>File</th>
+                                <th>Open</th>
+                                <th>Download</th>
+                                <th style="visibility:hidden;"></th>
+                            </tr>
+                        </thead>
 
-                                    <tbody>
+                        <tbody>
 
-                                        <?php
-                                        $cnt = 0;
-                                        $temp=array_reverse($data['bulletin']);  
-                                        foreach ($temp as $entity) {
-                                            echo ' 
+                            <?php
+                            $cnt = 0;
+                            $temp = array_reverse($data['bulletin']);
+                            foreach ($temp as $entity) {
+                                echo ' 
                             <tr>
                                 <td>' . ++$cnt . '</td>
                                 <td >' . $entity->date . '</td>
                                 <td >' . $entity->title . '</td>
                                 <td >' . $entity->description . '</td>
                                 <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
-                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'">Open</a></td>
-                                <td><a class="btn btn-primary" href="'.substr($entity->document_path, 14).'" download>Download</a></td>
+                                <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '">Open</a></td>
+                                <td><a class="btn btn-primary" href="' . URLROOT . substr($entity->document_path, 14) . '" download>Download</a></td>
                                 <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
                             </tr>';
-                                        } ?>
+                            } ?>
 
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- END DATA TABLE     -->
-                        </div>
-                    </div>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END DATA TABLE     -->
+            </div>
+        </div>
     </div>
 </div>
 <script>
