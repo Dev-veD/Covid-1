@@ -1,5 +1,52 @@
 <?php require_once APPROOT . '/views/includes/headn.html'; ?>
 <?php include 'headnews.html'; ?>
+<style>
+    .tablink {
+        background-color: #555;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        width: 25%;
+    }
+
+    /* Change background color of buttons on hover */
+    .tablink:hover {
+        background-color: #777;
+    }
+
+    /* Set default styles for tab content */
+    .tabcontent {
+        color: black;
+        display: none;
+        border: none;
+        text-align: center;
+    }
+
+    /* Style each tab content individually */
+    #London {
+        background-color: white;
+    }
+
+    #Paris {
+        background-color: white;
+    }
+
+    #Tokyo {
+        background-color: white;
+    }
+
+    #Oslo {
+        background-color: white;
+    }
+
+    #Bulletins {
+        background-color: white;
+    }
+</style>
 <section class="au-breadcrumb m-t-0">
     <div class="section__content section__content--p30">
         <div class="container-fluid">
@@ -31,55 +78,248 @@
         <div class="card-body card-block">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- DATA TABLE-->
-                    <div class="table-responsive m-b-0">
-                        <!-- ADD NOTICE -->
-                        <div class="addNotice mb-3">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
-                                Upload New Publicity
-                            </button>
-                        </div>
-                        <!-- NOTICE BLOCK -->
-                        <div class="noticebox">
-                            <table id="tableid" class="table table-top-campaign text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Sno.</th>
-                                        <th>Category</th>
-                                        <th>Title </th>
-                                        <th>Published Date</th>
-                                        <th>Description</th>
-                                        <th>File</th>
-                                        <th>Remove</th>
-                                        <th>Edit</th>
-                                        <th style="visibility:hidden;"></th>
-                                    </tr>
-                                </thead>
+                    <div class="addNotice mb-3">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                            Upload New Publicity
+                        </button>
+                    </div>
 
-                                <tbody>
+                    <div class="row">
+                        <button class="tablink col" onclick="openCity('London', this, 'blue')" id="defaultOpen">Press Release</button>
+                        <button class="tablink col" onclick="openCity('Paris', this, 'blue')">Covid-19 Awarness</button>
+                        <button class="tablink col" onclick="openCity('Tokyo', this, 'blue')">Covid-19 Advisory</button>
+                        <button class="tablink col" onclick="openCity('Oslo', this, 'blue')">Visuals</button>
+                        <button class="tablink col" onclick="openCity('Bulletins', this, 'blue')">Bulletins</button>
+                    </div>
+                    <div id="London" class="tabcontent">
+                        <!-- DATA TABLE-->
+                        <div class="table-responsive m-b-0">
+                            <!-- ADD NOTICE -->
 
-                                    <?php
+                            <!-- NOTICE BLOCK -->
+                            <div class="noticebox">
+                                <table id="tableid" class="table table-top-campaign text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Sno.</th>
+                                            <th>Published Date</th>
+                                            <th>Title </th>
+                                            <th>Description</th>
+                                            <th>File</th>
+                                            <th>Remove</th>
+                                            <th>Edit</th>
+                                            <th style="visibility:hidden;"></th>
+                                        </tr>
+                                    </thead>
 
-                                    foreach ($data['table'] as $entity) {
-                                        echo ' 
+                                    <tbody>
+
+                                        <?php
+                                        $temp=array_reverse($data['press']);  
+                                        foreach ($temp as $entity) {
+                                            echo ' 
                             <tr>
                                 <td>' . ++$cnt . '</td>
-                                <td >' . $entity->category . '</td>
-                                <td >' . $entity->title . '</td>
                                 <td >' . $entity->date . '</td>
+                                <td >' . $entity->title . '</td>
                                 <td >' . $entity->description . '</td>
-                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path,34) . '</p></a></td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
                                 <td id="' . $entity->id . '"class="remove text-center"><a href="#">Remove</a></td>
                                 <td><button type="button" class="btn btn-success editbtn"><i class="fa fa-edit"></i></button></td>
                                 <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
                             </tr>';
-                                    } ?>
+                                        } ?>
 
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- END DATA TABLE     -->
                         </div>
-                        <!-- END DATA TABLE     -->
+                    </div>
+                    <div id="Paris" class="tabcontent">
+                        <div class="table-responsive m-b-0">
+                            <!-- ADD NOTICE -->
+
+                            <!-- NOTICE BLOCK -->
+                            <div class="noticebox">
+                                <table id="tableid" class="table table-top-campaign text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Sno.</th>
+                                            <th>Published Date</th>
+                                            <th>Title </th>
+                                            <th>Description</th>
+                                            <th>File</th>
+                                            <th>Remove</th>
+                                            <th>Edit</th>
+                                            <th style="visibility:hidden;"></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <?php
+                                        $cnt=0;
+                                        $temp=array_reverse($data['awarness']);  
+                                        foreach ($temp as $entity) {
+                                            echo ' 
+                            <tr>
+                                <td>' . ++$cnt . '</td>
+                                <td >' . $entity->date . '</td>
+                                <td >' . $entity->title . '</td>
+                                <td >' . $entity->description . '</td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td id="' . $entity->id . '"class="remove text-center"><a href="#">Remove</a></td>
+                                <td><button type="button" class="btn btn-success editbtn"><i class="fa fa-edit"></i></button></td>
+                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
+                            </tr>';
+                                        } ?>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- END DATA TABLE     -->
+                        </div>
+                    </div>
+                    <div id="Tokyo" class="tabcontent">
+                        <div class="table-responsive m-b-0">
+                            <!-- ADD NOTICE -->
+
+                            <!-- NOTICE BLOCK -->
+                            <div class="noticebox">
+                                <table id="tableid" class="table table-top-campaign text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Sno.</th>
+                                            <th>Published Date</th>
+                                            <th>Title </th>
+                                            <th>Description</th>
+                                            <th>File</th>
+                                            <th>Remove</th>
+                                            <th>Edit</th>
+                                            <th style="visibility:hidden;"></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <?php
+                                        $cnt = 0;
+                                        $temp=array_reverse($data['advisory']);  
+                                        foreach ($temp as $entity) {
+                                            echo ' 
+                            <tr>
+                                <td>' . ++$cnt . '</td>
+                                <td >' . $entity->date . '</td>
+                                <td >' . $entity->title . '</td>
+                                <td >' . $entity->description . '</td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td id="' . $entity->id . '"class="remove text-center"><a href="#">Remove</a></td>
+                                <td><button type="button" class="btn btn-success editbtn"><i class="fa fa-edit"></i></button></td>
+                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
+                            </tr>';
+                                        } ?>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- END DATA TABLE     -->
+                        </div>
+                    </div>
+                    <div id="Oslo" class="tabcontent">
+                        <div class="table-responsive m-b-0">
+                            <!-- ADD NOTICE -->
+
+                            <!-- NOTICE BLOCK -->
+                            <div class="noticebox">
+                                <table id="tableid" class="table table-top-campaign text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Sno.</th>
+                                            <th>Published Date</th>
+                                            <th>Title </th>
+                                            <th>Description</th>
+                                            <th>File</th>
+                                            <th>Remove</th>
+                                            <th>Edit</th>
+                                            <th style="visibility:hidden;"></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <?php
+                                        $cnt = 0;
+                                        $temp=array_reverse($data['visuals']);  
+                                        foreach ($temp as $entity) {
+                                            echo ' 
+                            <tr>
+                                <td>' . ++$cnt . '</td>
+                                <td >' . $entity->date . '</td>
+                                <td >' . $entity->title . '</td>
+                                <td >' . $entity->description . '</td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td id="' . $entity->id . '"class="remove text-center"><a href="#">Remove</a></td>
+                                <td><button type="button" class="btn btn-success editbtn"><i class="fa fa-edit"></i></button></td>
+                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
+                            </tr>';
+                                        } ?>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- END DATA TABLE     -->
+                        </div>
+                    </div>
+                    <div id="Bulletins" class="tabcontent">
+                        <div class="table-responsive m-b-0">
+                            <!-- ADD NOTICE -->
+
+                            <!-- NOTICE BLOCK -->
+                            <div class="noticebox">
+                                <table id="tableid" class="table table-top-campaign text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Sno.</th>
+                                            <th>Published Date</th>
+                                            <th>Title </th>
+                                            <th>Description</th>
+                                            <th>File</th>
+                                            <th>Remove</th>
+                                            <th>Edit</th>
+                                            <th style="visibility:hidden;"></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <?php
+                                        $cnt = 0;
+                                        $temp=array_reverse($data['bulletin']);  
+                                        foreach ($temp as $entity) {
+                                            echo ' 
+                            <tr>
+                                <td>' . ++$cnt . '</td>
+                                <td >' . $entity->date . '</td>
+                                <td >' . $entity->title . '</td>
+                                <td >' . $entity->description . '</td>
+                                <td ><a href="' . URLROOT . substr($entity->document_path, 14) . '"><i class="lar la-file-alt"></i><p style="visibility:hidden;" >' . substr($entity->document_path, 34) . '</p></a></td>
+                                <td id="' . $entity->id . '"class="remove text-center"><a href="#">Remove</a></td>
+                                <td><button type="button" class="btn btn-success editbtn"><i class="fa fa-edit"></i></button></td>
+                                <td style="visibility:hidden;" class="bg-dark">' . $entity->id . '</td>
+                            </tr>';
+                                        } ?>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- END DATA TABLE     -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,7 +344,7 @@
                                             <div class="col-12">
                                                 <label style="color:black" for="newsCategory">Category</label>
                                                 <select class="form-control" id="newsCategory" name="category">
-                                                <option value="Press release">Press release</option>
+                                                    <option value="Press release">Press release</option>
                                                     <option value="Covid-19 advisory">Covid-19 advisory</option>
                                                     <option value="Visuals">Visuals</option>
                                                     <option value="Covid-19 Awarness">Covid-19 Awarness</option>
@@ -166,7 +406,7 @@
                                                 <input type="file" name="uploaded_file" id="uploaded_file" required><br><br>
                                             </div>
                                         </div>
-                                  <!--      <div class="row form group">
+                                        <!--      <div class="row form group">
                                             <div class="col-5"><hr></div>
                                             <div class="col-2">or</div>
                                             <div class="col-5"><hr></div>
@@ -239,7 +479,7 @@
 
                                             </div>
                                         </div>
-                  
+
                                         <div class="row form-group">
                                             <div class="col-12">
                                                 <label style="color:black" for="editnewsdescription">Description</label>
@@ -253,7 +493,7 @@
                                                 <input type="file" name="uploaded_file" id="edituploaded_file"><br><br>
                                             </div>
                                         </div>
-                  
+
 
 
                                         <div class="form-actions form-group text-center">
@@ -314,16 +554,41 @@
                         }).get();
 
                         console.log(data);
-                        $('#editid').val(data[8]);
+                        $('#editid').val(data[7]);
                         $('#editnewstitle').val(data[2]);
-                        $('#editnewsdate').val(data[3]);
-                        $('#editnewsdescription').val(data[4]);
-                        $('#editnewscategory').val(data[1]);
-                        document.getElementById('editfilename').innerHTML=data[5];
-                        
+                        $('#editnewsdate').val(data[1]);
+                        $('#editnewsdescription').val(data[3]);
+            
+                        document.getElementById('editfilename').innerHTML = data[4];
+
 
                     });
                 });
+            </script>
+            <script>
+                function openCity(cityName, elmnt, color) {
+                    // Hide all elements with class="tabcontent" by default */
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+
+                    // Remove the background color of all tablinks/buttons
+                    tablinks = document.getElementsByClassName("tablink");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].style.backgroundColor = "";
+                    }
+
+                    // Show the specific tab content
+                    document.getElementById(cityName).style.display = "block";
+
+                    // Add the specific color to the button used to open the tab content
+                    elmnt.style.backgroundColor = color;
+                }
+
+                // Get the element with id="defaultOpen" and click on it
+                document.getElementById("defaultOpen").click();
             </script>
 
 
