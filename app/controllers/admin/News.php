@@ -84,11 +84,10 @@ class News extends Controller
             }
         
         }
-        $this->dataView['table'] = $this->NewsModel->getNewsRecord();
-        $this->views('admin/news', $this->dataView);
+        $data=$this->getDataCategory();
+        $this->views('admin/news', $data);
     }
-
-    public function show()
+    public function getDataCategory()
     {
         $result = $this->NewsModel->getNewsRecord();
         $data=['press'=>[],'advisory'=>[],'visuals'=>[],'awarness'=>[],'bulletin'=>[],];
@@ -114,6 +113,11 @@ class News extends Controller
                 break;
             }
         }
+        return $data;
+    }
+    public function show()
+    {
+        $data=$this->getDataCategory();
         
         $this->views('user/news', $data);
     }
