@@ -98,7 +98,7 @@
 
                             <!-- NOTICE BLOCK -->
                             <div class="noticebox">
-                                <table id="tableid" class="table table-top-campaign text-center">
+                                <table id="tableid1" class="table table-top-campaign text-center">
                                     <thead>
                                         <tr>
                                             <th>Sno.</th>
@@ -143,7 +143,7 @@
 
                             <!-- NOTICE BLOCK -->
                             <div class="noticebox">
-                                <table id="tableid" class="table table-top-campaign text-center">
+                                <table id="tableid2" class="table table-top-campaign text-center">
                                     <thead>
                                         <tr>
                                             <th>Sno.</th>
@@ -189,7 +189,7 @@
 
                             <!-- NOTICE BLOCK -->
                             <div class="noticebox">
-                                <table id="tableid" class="table table-top-campaign text-center">
+                                <table id="tableid3" class="table table-top-campaign text-center">
                                     <thead>
                                         <tr>
                                             <th>Sno.</th>
@@ -235,7 +235,7 @@
 
                             <!-- NOTICE BLOCK -->
                             <div class="noticebox">
-                                <table id="tableid" class="table table-top-campaign text-center">
+                                <table id="tableid4" class="table table-top-campaign text-center">
                                     <thead>
                                         <tr>
                                             <th>Sno.</th>
@@ -281,7 +281,7 @@
 
                             <!-- NOTICE BLOCK -->
                             <div class="noticebox">
-                                <table id="tableid" class="table table-top-campaign text-center">
+                                <table id="tableid5" class="table table-top-campaign text-center">
                                     <thead>
                                         <tr>
                                             <th>Sno.</th>
@@ -546,7 +546,7 @@
             </script>
             <script type="text/javascript">
                 $(document).ready(function() {
-                    $('#tableid').on('click', '.editbtn', function() {
+                    $('#tableid1').on('click', '.editbtn', function() {
                         $('#editnews').modal('show');
                         $tr = $(this).closest('tr');
                         var data = $tr.children("td").map(function() {
@@ -558,7 +558,80 @@
                         $('#editnewstitle').val(data[2]);
                         $('#editnewsdate').val(data[1]);
                         $('#editnewsdescription').val(data[3]);
-            
+                        document.getElementById( 
+              "editnewsCategory").selectedIndex = "0"; 
+                        document.getElementById('editfilename').innerHTML = data[4];
+
+
+                    });
+                    $('#tableid2').on('click', '.editbtn', function() {
+                        $('#editnews').modal('show');
+                        $tr = $(this).closest('tr');
+                        var data = $tr.children("td").map(function() {
+                            return $(this).text();
+                        }).get();
+
+                        console.log(data);
+                        $('#editid').val(data[7]);
+                        $('#editnewstitle').val(data[2]);
+                        $('#editnewsdate').val(data[1]);
+                        $('#editnewsdescription').val(data[3]);
+                        document.getElementById( 
+              "editnewsCategory").selectedIndex = "1"; 
+                        document.getElementById('editfilename').innerHTML = data[4];
+
+
+                    });
+                    $('#tableid3').on('click', '.editbtn', function() {
+                        $('#editnews').modal('show');
+                        $tr = $(this).closest('tr');
+                        var data = $tr.children("td").map(function() {
+                            return $(this).text();
+                        }).get();
+
+                        console.log(data);
+                        $('#editid').val(data[7]);
+                        $('#editnewstitle').val(data[2]);
+                        $('#editnewsdate').val(data[1]);
+                        $('#editnewsdescription').val(data[3]);
+                        document.getElementById( 
+              "editnewsCategory").selectedIndex = "2"; 
+                        document.getElementById('editfilename').innerHTML = data[4];
+
+
+                    });
+                    $('#tableid4').on('click', '.editbtn', function() {
+                        $('#editnews').modal('show');
+                        $tr = $(this).closest('tr');
+                        var data = $tr.children("td").map(function() {
+                            return $(this).text();
+                        }).get();
+
+                        console.log(data);
+                        $('#editid').val(data[7]);
+                        $('#editnewstitle').val(data[2]);
+                        $('#editnewsdate').val(data[1]);
+                        $('#editnewsdescription').val(data[3]);
+                        document.getElementById( 
+              "editnewsCategory").selectedIndex = "3"; 
+                        document.getElementById('editfilename').innerHTML = data[4];
+
+
+                    });
+                    $('#tableid5').on('click', '.editbtn', function() {
+                        $('#editnews').modal('show');
+                        $tr = $(this).closest('tr');
+                        var data = $tr.children("td").map(function() {
+                            return $(this).text();
+                        }).get();
+
+                        console.log(data);
+                        $('#editid').val(data[7]);
+                        $('#editnewstitle').val(data[2]);
+                        $('#editnewsdate').val(data[1]);
+                        $('#editnewsdescription').val(data[3]);
+                        document.getElementById( 
+              "editnewsCategory").selectedIndex = "4"; 
                         document.getElementById('editfilename').innerHTML = data[4];
 
 
